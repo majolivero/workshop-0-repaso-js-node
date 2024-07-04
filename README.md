@@ -113,7 +113,7 @@ class Task {    //Se crea la clase Task
 
 class TaskManager {  //Se crea la clase TaskManager
     constructor() { //El constructor define el código que se va ejecutar cuando se crea una instancia de la clase TaskManager
-        this.tasks = JSON.parse(localStorage.getItem('tasks')) || []; //Obtengo el JSON de tareas de localStorage y lo convierto en un array
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || []; //Obtengo el JSON de tareas de localStorage y si está vacio devolverá un arreglo vacío 
         this.loadTasks(); //Ejecuto la función loadTasks
     }
 
