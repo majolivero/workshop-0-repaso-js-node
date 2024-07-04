@@ -107,17 +107,17 @@ class Task {    //Se crea la clase Task
     }
 
     toggleComplete() { //Es una función que sirve para cambiar el estado actual de la tarea
-        this.completed = !this.completed;
+        this.completed = !this.completed; //Cambia el estado actual de la tarea por el opuesto, si es true pone false y si es false pone true. 
     }
 }
 
-class TaskManager {
-    constructor() {
-        this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        this.loadTasks();
+class TaskManager {  //Se crea la clase TaskManager
+    constructor() { //El constructor define el código que se va ejecutar cuando se crea una instancia de la clase TaskManager
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || []; //Obtengo el JSON de tareas de localStorage y lo convierto en un array
+        this.loadTasks(); //Ejecuto la función loadTasks
     }
 
-    addTask(description) {
+    addTask(description) { //
         const id = this.tasks.length ? this.tasks[this.tasks.length - 1].id + 1 : 1;
         const task = new Task(id, description);
         this.tasks.push(task);
