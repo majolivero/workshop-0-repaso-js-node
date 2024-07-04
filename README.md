@@ -163,20 +163,20 @@ class TaskManager {  //Se crea la clase TaskManager
                 this.deleteTask(task.id); //Se llama a la funcion deleteTask a la cual se le pasa el id de la tarea
             });
 
-            item.appendChild(deleteButton); 
-            taskList.appendChild(item);
+            item.appendChild(deleteButton); //Muestra el botón eliminar en el navegador
+            taskList.appendChild(item); //Agrega la lista de tareas como elementos de lista 
         });
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const taskManager = new TaskManager();
+document.addEventListener('DOMContentLoaded', () => { //Se aplica el evento DOMContentLoaded a document y carga el DOM
+    const taskManager = new TaskManager(); //Se crea una instancia de la clase TaskManager
 
-    document.getElementById('add-task').addEventListener('click', () => {
-        const newTask = document.getElementById('new-task').value;
-        if (newTask) {
-            taskManager.addTask(newTask);
-            document.getElementById('new-task').value = '';
+    document.getElementById('add-task').addEventListener('click', () => { //Traigo el elemento boton con id add-task. Creo un evento click para este boton, tal que: 
+        const newTask = document.getElementById('new-task').value; //Al hacer click obtenga el valor del elemento input con id new-task 
+        if (newTask) { // Si existe algun valor en newTask, 
+            taskManager.addTask(newTask); //Ejecuto la función addTask que tiene como parametro newTask, de la clase taskManager
+            document.getElementById('new-task').value = ''; //Después de agregar la tarea, esta instrucción limpia el campo de entrada de texto, y evita que el usuario deba borrar manualmente lo escrito en el campo de texto.  
         }
     });
 });
