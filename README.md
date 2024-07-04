@@ -117,54 +117,53 @@ class TaskManager {  //Se crea la clase TaskManager
         this.loadTasks(); //Ejecuto la función loadTasks
     }
 
-    addTask(description) { //
-        const id = this.tasks.length ? this.tasks[this.tasks.length - 1].id + 1 : 1;
-        const task = new Task(id, description);
-        this.tasks.push(task);
-        this.saveTasks();
-        this.renderTasks();
+    addTask(description) { //Creo la función addTask que tiene como parámetro description
+        const id = this.tasks.length ? this.tasks[this.tasks.length - 1].id + 1 : 1;  // Declaro la constante id y utilizo un condicional ternario, tal que, si this.tasks.length es true, accedo al último elemento del array y le sumo uno para generar el nuevo id. De lo contrario, el resultado obtenido es 1. 
+        const task = new Task(id, description); //Declaro la constante task y creo el constructor que tiene como parametro el id y description
+        this.tasks.push(task); //Agrego una tarea al final de la lista de tareas
+        this.saveTasks(); //Llamo a la función saveTasks
+        this.renderTasks(); //Llamo a la función renderTasks
     }
 
-    deleteTask(id) {
-        this.tasks = this.tasks.filter(task => task.id !== id);
-        this.saveTasks();
-        this.renderTasks();
+    deleteTask(id) { //Creo la función deleteTask que tiene como parámetro el id de la tarea que quiero eliminar
+        this.tasks = this.tasks.filter(task => task.id !== id); //Se filtra la lista de tareas para que solo contenga las tareas con id diferente del id pasado como parametro(es decir, se elmina la tarea con este id)
+        this.saveTasks();//Lamo a la función saveTasks
+        this.renderTasks(); //Llamo a la función renderTasks
     }
 
-    toggleTaskComplete(id) {
-        const task = this.tasks.find(task => task.id === id);
-        if (task) {
-            task.toggleComplete();
-            this.saveTasks();
-            this.renderTasks();
+    toggleTaskComplete(id) { //Creo la función toggleTaskComplete que tiene como parámetro el id
+        const task = this.tasks.find(task => task.id === id); //En la lista de tareas tasks se busca con el método find la tarea cuyo id sea igual al id pasado como argumento en la función 
+        if (task) { //Esta condición verifica si se encontró la tarea con el id pasado como parámetro en la función toggleTaskComplete. Si esta condición es verdadera ejecuta la porción de código que está dentro del if. 
+            task.toggleComplete(); //Se llama a la función toggleComplete de la tarea para cambiar el estado del atributo completed 
+            this.saveTasks(); //Guardo la lista de tareas ya actualizada
+            this.renderTasks(); //Actualiza la interfaz de usuario para que se muestra la lista de tareas actualizada
         }
     }
 
-    saveTasks() {
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    saveTasks() {  //Se define la función saveTasks
+        localStorage.setItem('tasks', JSON.stringify(this.tasks)); //Guarda en el localStorage la tarea añadida o la lista de tareas añadidas
     }
 
-    loadTasks() {
-        this.renderTasks();
+    loadTasks() { //Se define la función loadTasks
+        this.renderTasks(); //Se llama a la función renderTasks
     }
 
-    renderTasks() {
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        this.tasks.forEach(task => {
-            const item = document.createElement('li');
-            item.textContent = task.description;
-            item.className = task.completed ? 'completed' : '';
-            item.addEventListener('click', () => this.toggleTaskComplete(task.id));
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Eliminar';
-            deleteButton.addEventListener('click', (e) => {
+    renderTasks() { // Se define la función renderTasks
+        const taskList = document.getElementById('task-list'); //Traemos el elemento HTML con el id task-list
+        taskList.innerHTML = ''; //Vacía el contenido del elemento taskList para asegurarse que no haya tareas duplicadas cuando se vuelva a renderizar la lista
+        this.tasks.forEach(task => { //Recorre cada tarea en la lista de tareas this.tasks y ejecuta la función tasks para cada tarea de la lista
+            const item = document.createElement('li'); //Creo el elemento HTML lista
+            item.textContent = task.description; //Establece el texto del elemento li con la descripcion de la tarea
+            item.className = task.completed ? 'completed' : ''; // Asigna la clase completed al elemento li si el estado de la tarea es completed: true, de lo contrario, no asigna ninguna clase
+            item.addEventListener('click', () => this.toggleTaskComplete(task.id)); //Crea un evento click asignado al elemento li y llama a la función toggleTaskComplete que tiene como parametro el id de la tarea
+            const deleteButton = document.createElement('button'); //Se crea el elemento HTML button
+            deleteButton.textContent = 'Eliminar'; //Establece el texto del botón como Eliminar
+            deleteButton.addEventListener('click', (e) => { //Se crea un evento click aplicado al boton eliminar para llamar a la función deleteTask cuando se haga click en este
                 e.stopPropagation(); // Evitar que el evento se propague al elemento padre, ¿Por qué? Porque el evento click en el botón también se propaga al elemento li.
-                this.deleteTask(task.id);
+                this.deleteTask(task.id); //Se llama a la funcion deleteTask a la cual se le pasa el id de la tarea
             });
 
-            item.appendChild(deleteButton);
+            item.appendChild(deleteButton); 
             taskList.appendChild(item);
         });
     }
