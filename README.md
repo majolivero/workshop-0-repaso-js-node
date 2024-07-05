@@ -276,19 +276,19 @@ Como usuario, quiero una aplicación que consuma datos de una API pública, para
 #### HTML
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consumiendo API con JSONPlaceholder</title>
-    <link rel="stylesheet" href="styles.css">
+<!DOCTYPE html><!--Primera línea del documento HTML y se usa para indicar al navegador que tipo de documento se está utilizando--->
+<html lang="en"><!--La etiqueta <html> es el contenedor raíz de todo el contenido de una página web. --> 
+<head><!--La etiqueta <head> contiene información sobre el documento, como metadatos, enlaces a estilos y scripts, y otros elementos que no se muestran directamente en la página.-->
+    <meta charset="UTF-8"><!-- La etiqueta <meta> se utiliza para especificar metadatos, como el juego de caracteres utilizado en el documento. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- La etiqueta <meta> con el atributo name="viewport" se utiliza para controlar el tamaño y la escala de la página en dispositivos móviles. -->
+    <title>Consumiendo API con JSONPlaceholder</title><!-- La etiqueta <title> se utiliza para especificar el título de la página, que se muestra en la pestaña del navegador. -->
+    <link rel="stylesheet" href="styles.css"><!-- La etiqueta <link> se utiliza para enlazar una hoja de estilos externa con la página. -->
 </head>
-<body>
-    <div id="app">
-        <h1>Listado de Posts</h1>
-        <button id="fetch-posts">Cargar Posts</button>
-        <ul id="post-list"></ul>
+<body><!-- La etiqueta <body> contiene todo el contenido visible de una página web, como texto, imágenes, enlaces, formularios, etc. -->
+    <div id="app"><!-- La etiqueta <div> se utiliza para agrupar elementos y crear secciones en una página web. El atributo id se utiliza para identificar un elemento de forma única. -->
+        <h1>Listado de Posts</h1><!--La etiqueta h1 se utiliza para definir un encabezado de nivel 1 en una página web.-->
+        <button id="fetch-posts">Cargar Posts</button><!--La etiqueta button se utiliza para crear un botón, en el cual, los usuarios pueden hacer click para realizar alguna acción -->
+        <ul id="post-list"></ul><!-- -->
         <div id="error-message"></div>
     </div>
     <script src="app.js"></script>
