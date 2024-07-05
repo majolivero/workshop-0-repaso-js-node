@@ -322,7 +322,7 @@ const fetchPosts = () => { //Se define la función fetchPosts, la cual, es una a
 const displayPosts = (posts) => { //Se define la función displayPosts, la cual, es una arrow function que tiene como parametro posts.
     const postList = document.getElementById('post-list'); //Mediante el método document.getElementById obtengo una referencia al elemento HTML basado en su atributo id. En este caso, el id 'post -list' permite identificar una lista no ordenada.
     postList.innerHTML = ''; //Permite borrar cualquier contenido previo dentro del elemento postList
-    posts.forEach(post => { //Se itera cada objeto posts en el array post
+    posts.forEach(post => { //Se itera cada objeto post en el array posts
         const listItem = document.createElement('li'); //Se crea un nuevo elemento de lista <li>
         listItem.textContent = `Title: ${post.title}`; // A cada elemento de lista, se asigna el texto "Title", más el título de cada publicación
         postList.appendChild(listItem); //Se agrega el elemento de la lista al elemento principal con el id 'post-list'
