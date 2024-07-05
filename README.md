@@ -288,10 +288,10 @@ Como usuario, quiero una aplicación que consuma datos de una API pública, para
     <div id="app"><!-- La etiqueta <div> se utiliza para agrupar elementos y crear secciones en una página web. El atributo id se utiliza para identificar un elemento de forma única. -->
         <h1>Listado de Posts</h1><!--La etiqueta h1 se utiliza para definir un encabezado de nivel 1 en una página web.-->
         <button id="fetch-posts">Cargar Posts</button><!--La etiqueta button se utiliza para crear un botón, en el cual, los usuarios pueden hacer click para realizar alguna acción -->
-        <ul id="post-list"></ul><!-- -->
+        <ul id="post-list"></ul><!--La etiqueta ul se usa para crear listas no ordenadas, es decir, es una lista con viñetas y no enumerada -->
         <div id="error-message"></div>
     </div>
-    <script src="app.js"></script>
+    <script src="app.js"></script> <!--La etiqueta <script> se utiliza para enlazar un archivo de script con la página. -->
 </body>
 </html>
 ```
@@ -299,39 +299,39 @@ Como usuario, quiero una aplicación que consuma datos de una API pública, para
 #### JavaScript
 
 ```javascript
-document.getElementById('fetch-posts').addEventListener('click', () => {
-    fetchPosts();
+document.getElementById('fetch-posts').addEventListener('click', () => { //Mediante el método document.getElementById obtengo una referencia al elemento HTML basado en su atributo id. En este caso, el id 'fetch - posts' permite identificar un botón. Este botón tiene un evento click, que permite ejecutar la función fetchPosts() cuando el usuario hace click en el. 
+    fetchPosts(); //Se llama a la función fetchPosts();
 });
 
-const fetchPosts = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+const fetchPosts = () => { //Se define la función fetchPosts, la cual, es una arrow function, que en este caso, no se le pasan parametros. 
+    fetch('https://jsonplaceholder.typicode.com/posts') //Se está utilizando la función fetch para hacer una solicitud HTTP a la URL proporcionada. Esto permite obtener información sobre los posts desde esta URL. 
+        .then(response => { //Después de hacer la petición, se crea una promesa utilizando .then(). El argumento response representa la respuesta del servidor. 
+            if (!response.ok) { // El condicional if es una estructura de control. Este condicional permite verificar si la respuesta tiene un estado "ok".
+                throw new Error('Network response was not ok ' + response.statusText); //El statement throw permite definir un error personalizado, en este caso, el mensaje es 'Network response was not ok' concatenado con el texto del estado de la respuesta. 
             }
-            return response.json();
+            return response.json(); //Si la respuesta es exitosa, se convierte la respuesta en formato JSON utilizando .json(). Esto devuelve otra promesa con los datos de las publicaciones. 
         })
-        .then(posts => {
-            displayPosts(posts);
+        .then(posts => { //Se crea otra promesa para manejar los datos de las publicaciones. El argumento posts contiene los datos en formato JSON. 
+            displayPosts(posts); //Se llama a la función displayPosts. 
         })
-        .catch(error => {
-            displayError(error);
+        .catch(error => { //Se usa .catch para manejar cualquier error que ocurra. 
+            displayError(error); //Se llama a la función displayError. Si hay algún problema se maneja mediante esta función. 
         });
 };
 
-const displayPosts = (posts) => {
-    const postList = document.getElementById('post-list');
-    postList.innerHTML = '';
-    posts.forEach(post => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `Title: ${post.title}`;
-        postList.appendChild(listItem);
+const displayPosts = (posts) => { //Se define la función displayPosts, la cual, es una arrow function que tiene como parametro posts.
+    const postList = document.getElementById('post-list'); //Mediante el método document.getElementById obtengo una referencia al elemento HTML basado en su atributo id. En este caso, el id 'post -list' permite identificar una lista no ordenada.
+    postList.innerHTML = ''; //Permite borrar cualquier contenido previo dentro del elemento postList
+    posts.forEach(post => { //Se itera cada objeto posts en el array post
+        const listItem = document.createElement('li'); //Se crea un nuevo elemento de lista <li>
+        listItem.textContent = `Title: ${post.title}`; // A cada elemento de lista, se asigna el texto "Title", más el título de cada publicación
+        postList.appendChild(listItem); //Se agrega el elemento de la lista al elemento principal con el id 'post-list'
     });
 };
 
-const displayError = (error) => {
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.textContent = `Error: ${error.message}`;
+const displayError = (error) => { //Se define la función displayError, la cual, es una arrow function que tiene como parametro error.
+    const errorMessage = document.getElementById('error-message'); //Traigo al elemento <div> identificado con el id 'error-message y lo guardo en la variable errorMessage'
+    errorMessage.textContent = `Error: ${error.message}`; //La cadena de texto esntre comillas invertidas es un template literal que se usa para mostrar un mensaje de error junto con el mensaje específico del error (almacenado en la variable error.message)
 };
 ```
 
