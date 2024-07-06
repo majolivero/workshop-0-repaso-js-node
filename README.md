@@ -36,7 +36,7 @@ En este primer punto, crearás una aplicación de gestión de tareas que te perm
 - Control de Flujo
 - Funciones de Flecha
 - JSON
-- Depuración
+- Depuración 
 
 ### Historia de Usuario
 
