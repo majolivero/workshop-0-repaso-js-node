@@ -109,7 +109,6 @@ const displayAvailableProduct = () => {
 }
 
 //Mostrar lista de productos por nombre
-
 const botonMostrarProductos = document.getElementById("getNames");
 botonMostrarProductos.addEventListener("click", (e) => {
     displayProductName();
