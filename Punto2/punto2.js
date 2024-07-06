@@ -10,7 +10,6 @@ class Note{
     }
 }
 
-
 class NoteManager{
     constructor(){
         this.notes = JSON.parse(localStorage.getItem('notes')) || [];
