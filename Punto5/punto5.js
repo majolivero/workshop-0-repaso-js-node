@@ -108,7 +108,7 @@ const displayAvailableProduct = () => {
     }
 }
 
-//Mostrar lista de productos por nombre
+//Mostrar lista de productos por nombre usando map
 const botonMostrarProductos = document.getElementById("getNames");
 botonMostrarProductos.addEventListener("click", (e) => {
     displayProductName();
